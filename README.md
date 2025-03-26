@@ -103,3 +103,16 @@ Kode akan menjadi lebih kompleks karena logika bisnis dan akses data bercampur. 
 Penggunaan Postman sangat berguna untuk menguji aplikasi dan memastikan respons yang dihasilkan sesuai dengan ekspektasi berdasarkan request yang dibuat. Postman memungkinkan kustomisasi metode seperti CRUD, sehingga memudahkan pengecekan akurasi data yang diambil melalui aplikasi.
 
 #### Reflection Publisher-3
+
+>Observer Pattern has two variations: Push model (publisher pushes data to subscribers) and Pull model (subscribers pull data from publisher). In this tutorial case, which variation of Observer Pattern that we use?
+
+Tutorial ini menggunakan Push model, di mana saat terjadi perubahan seperti pembuatan, penghapusan, atau pembaruan data, NotificationService secara langsung mengirimkan pembaruan ke semua subscriber.
+
+>What are the advantages and disadvantages of using the other variation of Observer Pattern for this tutorial case? (example: if you answer Q1 with Push, then imagine if we used Pull)
+
+Jika menggunakan Pull model, subscriber harus secara aktif meminta data terbaru dari publisher dan menentukan apakah ada perubahan yang relevan bagi mereka. Keuntungannya, subscriber memiliki fleksibilitas lebih dalam mengambil data dan dapat mengurangi beban pengiriman data yang tidak perlu. Namun, kelemahannya adalah subscriber harus mengetahui struktur data dari publisher dan melakukan polling secara berkala, yang bisa menyebabkan keterlambatan serta peningkatan beban pada sistem jika dilakukan terlalu sering.
+
+>Explain what will happen to the program if we decide to not use multi-threading in the notification process.
+
+Tanpa multi-threading, proses pengiriman notifikasi akan berjalan secara sinkron, di mana satu notifikasi harus selesai sebelum yang lain diproses. Jika ada banyak subscriber, antrean pemrosesan akan semakin panjang dan menyebabkan keterlambatan dalam pengiriman notifikasi. Hal ini bisa membuat sistem menjadi kurang responsif dan meningkatkan waktu tunggu bagi subscriber untuk menerima pembaruan.
+
