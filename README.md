@@ -77,6 +77,17 @@ This is the place for you to write reflections:
 ### Mandatory (Publisher) Reflections
 
 #### Reflection Publisher-1
+>In the Observer pattern diagram explained by the Head First Design Pattern book, Subscriber is defined as an interface. Explain based on your understanding of Observer design patterns, do we still need an interface (or trait in Rust) in this BambangShop case, or a single Model struct is enough?
+
+Kalau hanya ada satu jenis Subscriber dengan perilaku yang sama di BambangShop, maka cukup pakai satu struct tanpa perlu trait. Namun, jika ada kemungkinan menambahkan jenis Subscriber dengan cara kerja berbeda, seperti notifikasi via Webhook, Email, atau SMS, maka trait diperlukan agar lebih fleksibel dan mudah dikembangkan di masa depan.
+
+>id in Program and url in Subscriber is intended to be unique. Explain based on your understanding, is using Vec (list) sufficient or using DashMap (map/dictionary) like we currently use is necessary for this case?
+
+Jika penyimpanan hanya sekadar daftar Subscriber dan tidak sering melakukan pencarian berdasarkan `url`, maka `Vec` sudah cukup. Namun, jika sering butuh akses cepat ke Subscriber berdasarkan `url`, seperti memastikan tidak ada duplikasi atau mengupdate data tertentu, maka `DashMap` lebih efisien karena pencarian di HashMap lebih cepat dibandingkan iterasi di `Vec`.
+
+>When programming using Rust, we are enforced by rigorous compiler constraints to make a thread-safe program. In the case of the List of Subscribers (SUBSCRIBERS) static variable, we used the DashMap external library for thread safe HashMap. Explain based on your understanding of design patterns, do we still need DashMap or we can implement Singleton pattern instead?
+
+`DashMap` digunakan agar `SUBSCRIBERS` bisa diakses oleh banyak thread secara aman tanpa perlu manual locking. Jika program hanya berjalan dalam satu thread, Singleton bisa menjadi alternatif yang lebih sederhana. Namun, jika banyak thread akan membaca dan menulis ke `SUBSCRIBERS` secara bersamaan, `DashMap` tetap lebih baik karena sudah memiliki mekanisme locking internal yang lebih efisien dibandingkan implementasi Singleton manual.
 
 #### Reflection Publisher-2
 
