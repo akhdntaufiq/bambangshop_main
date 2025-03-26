@@ -90,5 +90,16 @@ Jika penyimpanan hanya sekadar daftar Subscriber dan tidak sering melakukan penc
 `DashMap` digunakan agar `SUBSCRIBERS` bisa diakses oleh banyak thread secara aman tanpa perlu manual locking. Jika program hanya berjalan dalam satu thread, Singleton bisa menjadi alternatif yang lebih sederhana. Namun, jika banyak thread akan membaca dan menulis ke `SUBSCRIBERS` secara bersamaan, `DashMap` tetap lebih baik karena sudah memiliki mekanisme locking internal yang lebih efisien dibandingkan implementasi Singleton manual.
 
 #### Reflection Publisher-2
+>In the Model-View Controller (MVC) compound pattern, there is no “Service” and “Repository”. Model in MVC covers both data storage and business logic. Explain based on your understanding of design principles, why we need to separate “Service” and “Repository” from a Model?
+
+Pemecahan ini mengikuti Single Responsibility Principle (SRP) dan Separation of Concerns (SoC) agar kode lebih modular dan mudah dikelola. Repository menangani akses data, sementara Service mengelola logika bisnis. Dengan pemisahan ini, perubahan pada database atau logika bisnis bisa dilakukan tanpa memengaruhi bagian lain dari kode.
+
+>What happens if we only use the Model? Explain your imagination on how the interactions between each model (Program, Subscriber, Notification) affect the code complexity for each model?
+
+Kode akan menjadi lebih kompleks karena logika bisnis dan akses data bercampur. Dalam kasus Program, Subscriber, dan Notification, setiap Model harus menangani banyak tugas sekaligus, menyebabkan duplikasi kode dan ketergantungan tinggi (tight coupling). Ini membuat perubahan menjadi sulit dan rawan bug.
+
+>Have you explored more about Postman? Tell us how this tool helps you to test your current work. You might want to also list which features in Postman you are interested in or feel like it is helpful to help your Group Project or any of your future software engineering projects.
+
+Penggunaan Postman sangat berguna untuk menguji aplikasi dan memastikan respons yang dihasilkan sesuai dengan ekspektasi berdasarkan request yang dibuat. Postman memungkinkan kustomisasi metode seperti CRUD, sehingga memudahkan pengecekan akurasi data yang diambil melalui aplikasi.
 
 #### Reflection Publisher-3
